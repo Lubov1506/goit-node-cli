@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import { faker } from '@faker-js/faker';
 const contactsPath = path.resolve('db', 'contacts.json');
 
 async function listContacts() {
@@ -44,7 +45,7 @@ async function addContact(name, email, phone) {
   try {
     const contacts = await listContacts();
     const newContact = {
-      id: String(Date.now()),
+      id: faker.database.mongodbObjectId(),
       name,
       email,
       phone,
